@@ -73,10 +73,10 @@ const port = 8080,
   app = express(),
   issue = express.Router(),
   cors = require("cors"),
-  nano = require('nano')('http://localhost:5984');
+  nano = require('nano')('http://127.0.0.1:5984');
 //FIREBASEADMIN = FIREBASEADMIN.toSource(); //https://dashboard.stripe.com/account/apikeys
 
-app.use(timeout("5s"));
+app.use(timeout("10s"));
 //catches ctrl+c event
 process.on("SIGINT", exitHandler.bind(null, { exit: true }));
 // catches "kill pid" (for example: nodemon restart)
@@ -441,7 +441,7 @@ issue
           });
         });
       });
-      
+
     })
   })
   .post("/attend", async (req, res) => {
