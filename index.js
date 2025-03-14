@@ -73,9 +73,10 @@ const port = 8080,
   app = express(),
   issue = express.Router(),
   cors = require("cors"),
-  nano = require('nano')('http://admin:password@localhost:5984');
+  nano = require('nano')('http://localhost:5984');
 //FIREBASEADMIN = FIREBASEADMIN.toSource(); //https://dashboard.stripe.com/account/apikeys
 
+await nano.auth("admin", "password");
 app.use(timeout("5s"));
 //catches ctrl+c event
 process.on("SIGINT", exitHandler.bind(null, { exit: true }));
