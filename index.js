@@ -419,32 +419,30 @@ issue
         statusCode,
         statusText: "not a secure origin-referer-to-host protocol"
       });
-    await nano.auth("admin", "password");
-    nano.db.create('passport_events', async (err) => {
-      if (!err) return res.send({
-        statusCode,
-        statusText,
-        message: "created database: passport_events"
-      });
-      if (err.error !== "file_exists") return res.send({
-        statusCode,
-        statusText,
-        error: err
-      });
-      const alice = nano.use('passport_events');
-      await alice.list().then((body) => {
-        res.send({
+    await nano.auth("admin", "password").then(() => {
+
+      nano.db.create('passport_events', async (err) => {
+        if (!err) return res.send({
           statusCode,
           statusText,
-          events: body.rows
+          message: "created database: passport_events"
+        });
+        if (err.error !== "file_exists") return res.send({
+          statusCode,
+          statusText,
+          error: err
+        });
+        const alice = nano.use('passport_events');
+        await alice.list().then((body) => {
+          res.send({
+            statusCode,
+            statusText,
+            events: body.rows
+          });
         });
       });
-
-
-
-
-
-    });
+      
+    })
   })
   .post("/attend", async (req, res) => {
     if (allowOriginType(req.headers.origin, res))
