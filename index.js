@@ -390,7 +390,11 @@ issue
     });
   })
   .post("/list", async (req, res) => {
-
+    return res.send({
+      statusCode,
+      statusText,
+      message: "events"
+    });
     nano.db.create('passport_events', async (err) => {
       if (err) return res.send({
         statusCode,
