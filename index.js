@@ -419,7 +419,7 @@ issue
         statusCode,
         statusText: "not a secure origin-referer-to-host protocol"
       });
-    //await nano.auth("admin", "password").then(() => {
+    await nano.auth("admin", "password").then(() => {
 
       nano.db.create('passport_events', async (err) => {
         if (!err) return res.send({
@@ -442,7 +442,7 @@ issue
         });
       });
 
-    //})
+    })
   })
   .post("/attend", async (req, res) => {
     if (allowOriginType(req.headers.origin, res))
