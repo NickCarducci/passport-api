@@ -76,7 +76,6 @@ const port = 8080,
   nano = require('nano')('http://localhost:5984');
 //FIREBASEADMIN = FIREBASEADMIN.toSource(); //https://dashboard.stripe.com/account/apikeys
 
-await nano.auth("admin", "password");
 app.use(timeout("5s"));
 //catches ctrl+c event
 process.on("SIGINT", exitHandler.bind(null, { exit: true }));
@@ -420,6 +419,7 @@ issue
         statusCode,
         statusText: "not a secure origin-referer-to-host protocol"
       });
+    await nano.auth("admin", "password");
     nano.db.create('passport_events', async (err) => {
       if (!err) return res.send({
         statusCode,
