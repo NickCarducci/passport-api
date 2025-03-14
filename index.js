@@ -38,23 +38,24 @@ const port = 8080,
     const origin = req.headers.origin;
     app.use(cors({ origin })); //https://stackoverflow.com/questions/36554375/getting-the-req-origin-in-express
     if (
-      [...(req.path.includes("/users") || req.path.includes("/create") || req.path.includes("/delete") ? allowedOrigins : [req.headers.origin]), req.body.payingDomains].indexOf(
+      [...(req.path.includes("/users") || req.path.includes("/create") || req.path.includes("/delete") ? allowedOrigins : [req.headers.origin]), ...req.body.payingDomains].indexOf(
         req.headers.origin
       ) === -1
     )
-      return RESSEND(res, {
+      return res.send({
         statusCode: 401,
         error: "no access for this origin- " + req.headers.origin
       });
-    if (allowOriginType(req.headers.origin, res))
-      return RESSEND(res, {
+    if (allowOriginType(origin, res))
+      return res.send({
         statusCode,
         statusText: "not a secure origin-referer-to-host protocol"
       });
     //"Cannot setHeader headers after they are sent to the client"
 
-    res.statusCode = 204;
-    RESSEND(res); //res.sendStatus(200);
+    res.send({
+      statusCode: 204
+    }) //res.sendStatus(200);
   },
   //const printObject = (o) => Object.keys(o).map((x) => {return {[x]: !o[x] ? {} : o[x].constructor === Object ? printObject(o[x]) : o[x] };});
   standardCatch = (res, e, extra, name) => {
@@ -71,8 +72,8 @@ const port = 8080,
   express = require("express"),
   app = express(),
   issue = express.Router(),
-  cors = require("cors"),
-  nano = require('nano')('http://localhost:5984');
+  cors = require("cors");
+  //nano = require('nano')('http://localhost:5984');
 //FIREBASEADMIN = FIREBASEADMIN.toSource(); //https://dashboard.stripe.com/account/apikeys
 
 app.use(timeout("5s"));
