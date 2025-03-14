@@ -261,158 +261,152 @@ issue
   })*/
   .post("/leaderboard", async (req, res) => {
     nano.db.create('passport_leaders', async (err) => {
-      if (err) return res.send({
+      if (!err) return res.send({
         statusCode, statusText,
         message: "created database: passport_leaders"
       })
-      //database exists
-      if (err.error === "file_exists") {
-        const alice = nano.use('passport_leaders');
-        const q = {
-          selector: {},
-          fields: ["eventsAttended", "fullName", "username"],
-          limit: 5000
-        };
-        //strip PII
-        await alice.find(q, (body) => {
-          const leaders = body.rows/*.map(x => {
+      if (err.error !== "file_exists") return res.send({
+        statusCode,
+        statusText,
+        error: err
+      });
+
+      const alice = nano.use('passport_leaders');
+      const q = {
+        selector: {},
+        fields: ["eventsAttended", "fullName", "username"],
+        limit: 5000
+      };
+      //strip PII
+      await alice.find(q, (body) => {
+        const leaders = body.rows/*.map(x => {
               return { 
                 eventsAttended: x.eventsAttended,
                 fullName: x.fullName,
                 username: x.username
               }
             })*/.sort((a, b) => {
-            a.eventsAttended - b.eventsAttended
-          });
-          res.send({
-            statusCode,
-            statusText,
-            leaders
-          });
+          a.eventsAttended - b.eventsAttended
         });
-        /*await alice.get(eventId, { revs_info: true }, async (err, body) => {
-          if (err) {
-            //document doesn't exist
-            /*alice.insert(
-              { "views": 
-                { "by_events_attended": 
-                  { "map": function(doc) { emit([doc.eventsAttended], doc._id); } } 
-                }
-              }, '_design/design_doc', (err)=>{
-                res.send({
-                  statusCode,
-                  statusText,
-                  body: "created design doc for leaderboard"
-                })
-              });* /
-          } else await alice.find({
-            selector: {
-              eventsAttended: { "$gt": 25 }
-            },
-            fields: ["name", "age", "tags", "url"],
-            limit: 50
-          }, (err, body) => {
-
-
-            //await alice.view('designDoc', 'byEventsAttended', function(err, body) {
-            if (!err) {
+        res.send({
+          statusCode,
+          statusText,
+          leaders
+        });
+      });
+      /*await alice.get(eventId, { revs_info: true }, async (err, body) => {
+        if (err) {
+          //document doesn't exist
+          /*alice.insert(
+            { "views": 
+              { "by_events_attended": 
+                { "map": function(doc) { emit([doc.eventsAttended], doc._id); } } 
+              }
+            }, '_design/design_doc', (err)=>{
               res.send({
                 statusCode,
                 statusText,
-                leaders: body.rows
-              });
-            } else res.send({
+                body: "created design doc for leaderboard"
+              })
+            });* /
+        } else await alice.find({
+          selector: {
+            eventsAttended: { "$gt": 25 }
+          },
+          fields: ["name", "age", "tags", "url"],
+          limit: 50
+        }, (err, body) => {
+
+
+          //await alice.view('designDoc', 'byEventsAttended', function(err, body) {
+          if (!err) {
+            res.send({
               statusCode,
               statusText,
-              error: err
+              leaders: body.rows
             });
+          } else res.send({
+            statusCode,
+            statusText,
+            error: err
           });
-        })*/
-      } else res.send({
-        statusCode,
-        statusText,
-        error: err
-      });
+        });
+      })*/
+
 
     });
   })
   .post("/create", async (req, res) => {
     nano.db.create('passport_events', async (err) => {
-      if (err) return res.send({
+      if (!err) return res.send({
         statusCode, statusText,
         message: "created database: passport_events"
       })
-      //database exists
-      if (err.error === "file_exists") {
-        const alice = nano.use('passport_events');
-        await alice.insert({
-          title: req.body.title,
-          date: req.body.date,
-          descriptionLink: req.body.descriptionLink,
-          location: req.body.location,
-          department: req.body.department,
-          school: req.body.school,
-          attendees: [],
-        })
-
-      } else res.send({
+      if (err.error !== "file_exists") return res.send({
         statusCode,
         statusText,
         error: err
       });
+      const alice = nano.use('passport_events');
+      await alice.insert({
+        title: req.body.title,
+        date: req.body.date,
+        descriptionLink: req.body.descriptionLink,
+        location: req.body.location,
+        department: req.body.department,
+        school: req.body.school,
+        attendees: [],
+      })
+
+
 
     });
   })
   .post("/delete", async (req, res) => {
     nano.db.create('passport_events', async (err) => {
-      if (err) return res.send({
+      if (!err) return res.send({
         statusCode, statusText,
         message: "created database: passport_events"
       })
-      //database exists
-      if (err.error === "file_exists") {
-        const alice = nano.use('passport_events');
-        await alice.get(eventId, { revs_info: true }, async (err, body) => {
-          if (err) {
-            //document doesn't exist
-            res.send({
-              statusCode,
-              statusText,
-              error: "Event doesn't exist"
-            });
-          } else await alice.destroy(eventId, body.rev)
-
-        })
-      } else res.send({
+      if (err.error !== "file_exists") return res.send({
         statusCode,
         statusText,
         error: err
       });
+      const alice = nano.use('passport_events');
+      await alice.get(eventId, { revs_info: true }, async (err, body) => {
+        if (err) {
+          //document doesn't exist
+          res.send({
+            statusCode,
+            statusText,
+            error: "Event doesn't exist"
+          });
+        } else await alice.destroy(eventId, body.rev)
+
+      })
+
 
     });
   })
   .post("/list", async (req, res) => {
     nano.db.create('passport_events', async (err) => {
-      if (err) return res.send({
-        statusCode, statusText,
-        message: "created database: passport_events"
-      })
-      //database exists
-      if (err.error === "file_exists") {
-        const alice = nano.use('passport_events');
-        await alice.list().then((body) => {
-          res.send({
-            statusCode,
-            statusText,
-            events: body.rows
-          });
-        });
-
-      } else res.send({
+      //database doesn't exist
+      if (err.error !== "file_exists") return res.send({
         statusCode,
         statusText,
-        error: err
+        message: "created database: passport_events"
       });
+      const alice = nano.use('passport_events');
+      await alice.list().then((body) => {
+        res.send({
+          statusCode,
+          statusText,
+          events: body.rows
+        });
+      });
+
+
 
     });
   })
