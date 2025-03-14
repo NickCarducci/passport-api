@@ -72,8 +72,8 @@ const port = 8080,
   express = require("express"),
   app = express(),
   issue = express.Router(),
-  cors = require("cors");
-  //nano = require('nano')('http://localhost:5984');
+  cors = require("cors"),
+  nano = require('nano')('http://localhost:5984');
 //FIREBASEADMIN = FIREBASEADMIN.toSource(); //https://dashboard.stripe.com/account/apikeys
 
 app.use(timeout("5s"));
@@ -261,6 +261,11 @@ issue
     });
   })*/
   .post("/leaderboard", async (req, res) => {
+    if (allowOriginType(req.headers.origin, res))
+      return RESSEND(res, {
+        statusCode,
+        statusText: "not a secure origin-referer-to-host protocol"
+      });
     nano.db.create('passport_leaders', async (err) => {
       if (!err) return res.send({
         statusCode, statusText,
@@ -338,6 +343,11 @@ issue
     });
   })
   .post("/create", async (req, res) => {
+    if (allowOriginType(req.headers.origin, res))
+      return RESSEND(res, {
+        statusCode,
+        statusText: "not a secure origin-referer-to-host protocol"
+      });
     nano.db.create('passport_events', async (err) => {
       if (!err) return res.send({
         statusCode, statusText,
@@ -364,6 +374,11 @@ issue
     });
   })
   .post("/delete", async (req, res) => {
+    if (allowOriginType(req.headers.origin, res))
+      return RESSEND(res, {
+        statusCode,
+        statusText: "not a secure origin-referer-to-host protocol"
+      });
     nano.db.create('passport_events', async (err) => {
       if (!err) return res.send({
         statusCode, statusText,
@@ -391,11 +406,11 @@ issue
     });
   })
   .post("/list", async (req, res) => {
-    return res.send({
-      statusCode,
-      statusText,
-      message: "events"
-    });
+    if (allowOriginType(req.headers.origin, res))
+      return RESSEND(res, {
+        statusCode,
+        statusText: "not a secure origin-referer-to-host protocol"
+      });
     nano.db.create('passport_events', async (err) => {
       if (err) return res.send({
         statusCode,
@@ -421,6 +436,11 @@ issue
     });
   })
   .post("/attend", async (req, res) => {
+    if (allowOriginType(req.headers.origin, res))
+      return RESSEND(res, {
+        statusCode,
+        statusText: "not a secure origin-referer-to-host protocol"
+      });
     nano.db.create('passport_events', async (err) => {
       if (err) return res.send({
         statusCode, statusText,
