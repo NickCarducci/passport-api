@@ -38,7 +38,7 @@ const port = 8080,
     const origin = req.headers.origin;
     app.use(cors({ origin })); //https://stackoverflow.com/questions/36554375/getting-the-req-origin-in-express
     if (
-      [...(req.path.includes("/users") || req.path.includes("/create") || req.path.includes("/delete") ? allowedOrigins : req.headers.origin), req.body.payingDomains].indexOf(
+      [...(req.path.includes("/users") || req.path.includes("/create") || req.path.includes("/delete") ? allowedOrigins : [req.headers.origin]), req.body.payingDomains].indexOf(
         req.headers.origin
       ) === -1
     )
