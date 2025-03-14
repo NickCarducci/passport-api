@@ -443,6 +443,11 @@ issue
       });
 
     })
+    .catch(err=>res.send({
+      statusCode,
+      statusText,
+      error: err
+    }))
   })
   .post("/attend", async (req, res) => {
     if (allowOriginType(req.headers.origin, res))
