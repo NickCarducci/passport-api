@@ -390,12 +390,17 @@ issue
     });
   })
   .post("/list", async (req, res) => {
+
     nano.db.create('passport_events', async (err) => {
-      //database doesn't exist
-      if (err.error !== "file_exists") return res.send({
+      if (err) return res.send({
         statusCode,
         statusText,
         message: "created database: passport_events"
+      });
+      if (err.error !== "file_exists") return res.send({
+        statusCode,
+        statusText,
+        error: err
       });
       const alice = nano.use('passport_events');
       await alice.list().then((body) => {
