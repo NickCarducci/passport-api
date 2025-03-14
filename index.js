@@ -267,16 +267,18 @@ issue
         statusText: "not a secure origin-referer-to-host protocol"
       });
     nano.db.create('passport_leaders', async (err) => {
-      if (!err) return res.send({
-        statusCode, statusText,
-        message: "created database: passport_leaders"
-      })
-      if (err.error !== "file_exists") return res.send({
-        statusCode,
-        statusText,
-        error: err
-      });
-
+      if (err) {
+        if (err.error !== "file_exists") return res.send({
+          statusCode,
+          statusText,
+          error: err
+        });
+        if (err.error === "file_exists") return res.send({
+          statusCode,
+          statusText,
+          message: "created database: passport_leaders"
+        });
+      }
       const alice = nano.use('passport_leaders');
       const q = {
         selector: {},
@@ -349,15 +351,18 @@ issue
         statusText: "not a secure origin-referer-to-host protocol"
       });
     nano.db.create('passport_events', async (err) => {
-      if (!err) return res.send({
-        statusCode, statusText,
-        message: "created database: passport_events"
-      })
-      if (err.error !== "file_exists") return res.send({
-        statusCode,
-        statusText,
-        error: err
-      });
+      if (err) {
+        if (err.error !== "file_exists") return res.send({
+          statusCode,
+          statusText,
+          error: err
+        });
+        if (err.error === "file_exists") return res.send({
+          statusCode,
+          statusText,
+          message: "created database: passport_events"
+        });
+      }
       const alice = nano.use('passport_events');
       await alice.insert({
         title: req.body.title,
@@ -380,15 +385,18 @@ issue
         statusText: "not a secure origin-referer-to-host protocol"
       });
     nano.db.create('passport_events', async (err) => {
-      if (!err) return res.send({
-        statusCode, statusText,
-        message: "created database: passport_events"
-      })
-      if (err.error !== "file_exists") return res.send({
-        statusCode,
-        statusText,
-        error: err
-      });
+      if (err) {
+        if (err.error !== "file_exists") return res.send({
+          statusCode,
+          statusText,
+          error: err
+        });
+        if (err.error === "file_exists") return res.send({
+          statusCode,
+          statusText,
+          message: "created database: passport_events"
+        });
+      }
       const alice = nano.use('passport_events');
       await alice.get(eventId, { revs_info: true }, async (err, body) => {
         if (err) {
@@ -412,18 +420,16 @@ issue
         statusText: "not a secure origin-referer-to-host protocol"
       });
     nano.db.create('passport_events', async (err) => {
-      if (err) {
-        if (err.error !== "file_exists") return res.send({
-          statusCode,
-          statusText,
-          error: err
-        });
-        if (err.error === "file_exists") return res.send({
-          statusCode,
-          statusText,
-          message: "created database: passport_events"
-        });
-      }
+      if (!err) return res.send({
+        statusCode,
+        statusText,
+        message: "created database: passport_events"
+      });
+      if (err.error !== "file_exists") return res.send({
+        statusCode,
+        statusText,
+        error: err
+      });
       const alice = nano.use('passport_events');
       await alice.list().then((body) => {
         res.send({
@@ -432,6 +438,8 @@ issue
           events: body.rows
         });
       });
+
+
 
 
 
@@ -444,10 +452,18 @@ issue
         statusText: "not a secure origin-referer-to-host protocol"
       });
     nano.db.create('passport_events', async (err) => {
-      if (err) return res.send({
-        statusCode, statusText,
-        message: "created database: passport_events"
-      })
+      if (err) {
+        if (err.error !== "file_exists") return res.send({
+          statusCode,
+          statusText,
+          error: err
+        });
+        if (err.error === "file_exists") return res.send({
+          statusCode,
+          statusText,
+          message: "created database: passport_events"
+        });
+      }
       //passport_events database exists
       if (err.error === "file_exists") {
         nano.db.create('passport_leaders', async (err) => {
