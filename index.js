@@ -93,10 +93,10 @@ fs.writeFile('/firebaseService', process.env.firebaseService, err => {
     });
   }
 });*/
-const serviceAccount = require('./firebase-service.json');
+//const serviceAccount = require('./firebase-service.json');
 //const jsonData = JSON.parse(process.env.FIREBASE_SERVICE);
 initializeApp({
-  credential: cert(serviceAccount)
+  credential: applicationDefault()//cert(serviceAccount)
 });
 
 app.use(timeout("10s"));
