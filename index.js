@@ -215,7 +215,7 @@ issue
     const evenT = db.collection('events').doc(req.body.eventId).get();
 
     if (!evenT.exists) {
-      console.log("event doesn't exist.");
+      console.log(req.body.eventId+" event doesn't exist.");
       return res.send({
         statusCode,
         statusText,
