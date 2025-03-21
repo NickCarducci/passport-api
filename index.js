@@ -93,10 +93,10 @@ fs.writeFile('/firebaseService', process.env.firebaseService, err => {
     });
   }
 });*/
-//const serviceAccount = require('./firebase-service.json');
+const serviceAccount = require('./passport-service.json');
 //const jsonData = JSON.parse(process.env.FIREBASE_SERVICE);
 initializeApp({
-  credential: applicationDefault()//cert(serviceAccount)
+  credential: cert(serviceAccount)
 });
 
 app.use(timeout("10s"));
