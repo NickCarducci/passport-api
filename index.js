@@ -211,11 +211,11 @@ issue
         statusCode,
         statusText: "not a secure origin-referer-to-host protocol"
       });
-    console.log("attended.");
     const db = getFirestore();
     const evenT = db.collection('events').doc(req.body.eventId).get();
 
     if (!evenT.exists) {
+      console.log("event doesn't exist.");
       return res.send({
         statusCode,
         statusText,
@@ -223,11 +223,14 @@ issue
       })
     }
     const event = evenT.data();
-    if (event.attendees.includes(req.body.studentId)) return res.send({
-      statusCode,
-      statusText,
-      error: "already attended"
-    });
+    if (event.attendees.includes(req.body.studentId)) {
+      console.log("already attended.");
+      return res.send({
+        statusCode,
+        statusText,
+        error: "already attended"
+      });
+    }
     await db.collection('events').doc(req.body.eventId).update({
       attendees: FieldValue.arrayUnion(req.body.studentId)
     });
