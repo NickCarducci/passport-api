@@ -237,6 +237,7 @@ issue
       fullName: req.body.fullName,
       username: req.body.username,
     });
+    console.log("attended.")
     res.send({
       statusCode,
       statusText,
