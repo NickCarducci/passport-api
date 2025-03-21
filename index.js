@@ -212,11 +212,11 @@ issue
         statusText: "not a secure origin-referer-to-host protocol"
       });
     const db = getFirestore();
-    const evenT = db.collection('events').doc(req.body.eventId).get();
+    const evenT = await db.collection('events').doc(req.body.eventId).get();
 
     if (!evenT.exists) {
       console.log(req.body.eventId+" event doesn't exist.");
-      console.log((await evenT).data());
+      //console.log((await evenT).data());
       return res.send({
         statusCode,
         statusText,
@@ -235,7 +235,7 @@ issue
     await db.collection('events').doc(req.body.eventId).update({
       attendees: FieldValue.arrayUnion(req.body.studentId)
     });
-    const student = db.collection('leaders').doc(req.body.studentId).get();
+    const student = await db.collection('leaders').doc(req.body.studentId).get();
     await db.collection('leaders').doc(req.body.studentId)[student.exists ? "update" : "set"]({
       eventsAttended: FieldValue.increment(1),
       address: req.body.address,
