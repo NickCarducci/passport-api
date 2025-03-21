@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "passport-s0989374",
+  "private_key_id": "e8ae242fa695107ccd82011d8eb850096c2b3a5d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDmpqRZgD3LNV/k\nKTigtoKXVlE27BLmSZZqFGZcMVfILxoJ1yaetgoMydJ5YIiAZ7Zyrp00maCWBAwe\nVLjZ9DH0jkWJ65/ZC6cjmQmzgXgVXCNEAv9UGLgkMnvTivOR251V+PAEUP9qNdje\n33pTF/flC0YJAAMXB9+iOnCIVPJzrNYGjrff4TiwOUt+MPxu7qtIuhCLa1mzDlad\npdHTsV6l6/k6x+v/Dupwo4E+/oGgyRFMgzlAMx/opwi8YT5KJt06hyGyP5JVs4/B\nLsN+CkAxbAlzRnL2HNwrklDbVB3sLiB+LmU2i/6uXmBRTL8SH4+AMQuqn5CuaDbS\ntMAfIs8vAgMBAAECggEADQIfU8g78/QrLSg2quMQOMPOqcfPsGWRvPgwkQjcDWIR\nWGEQ1bOo8RwIKaihmjL/OGGTuS3kP4Gz7e6o9us4TrV1bjgNQwWkDrRotn3Z+BkY\nXhNt3grU29RtumUO+U4cW1xtAPlRJmbUt+Enuib9vVEQ8/H9up9K5BCNXIsEmjRs\n+/v0O+Bh0ijbh5KjGiMRDUlWYUD4KQqg0zldQIpsu+NI6kIpmXJYMNAOI5CMZhAk\nDLRueFr6L+yy0S+tZwD2yV2+rvEbnJMxt34eN4mpYGtVieO4TdsJH2N344Y+sw6+\njMMS+C2AbBeCJTAlnHXM4zeRNzSvcS03SN/oXR/rUQKBgQD1FLLcy3bRGw3EhGkR\nQX2XuAONTYSVVYx99LfC3wixJB6wr50yoPkNrP/ko5WmZt+DoDrt7/drut/RaUWn\nS7A//gw2OK6tgFZMb9ztkyZt6i+qMK7nhYXfPmXR7sG7ZXD3HyyGRyGmr1nffwfI\neLdeygZST5+GBFkc3J7q3cLeEQKBgQDw7VxyW34PoURMSx3KRWfl1xQD1Hk/lGlB\nopRVH6VqPpseEnZ4hSn8FRWhUe8QQsZlSwG3eqjAkmBHEP+jC13eMRKwsauXHCmV\n6+YBQKepo7sTjdCFgE/EI0Kj3SEAMIBaxt33UhpLU5QWewyz4cpyjfDiX6i3aSCg\nimH7ABaZPwKBgB/OHNwsh3HhmerL6Dq2Dg93cPaQfclHfeEGtiZS/XTHpDf3wmXE\noC2XKupIFG6w4Qba72rbfnd7m/o4ODLazrevR3Rt7LVVd12aEsi+FPmkr6TdhoVD\nPblYBqy02G1yX7OiVwviBUr1bKtld+QbTmi9vQ5HiQNCYzIsq279coGRAoGAEHr8\nHup5RhJu/JUK1aJHyCYdPWHUZW/+fzni0avXgdwEelsi9X2OcKr0jtNu+frHXXhz\nBp0CXCHnKhVUl0+YvTE4KRQOO8j2Y0X+tsk4btc/XcgOooMzcaRD07e1oTCwJwWB\ne4CHQe3WrG8AYHGqiomBF8sZXGp5i+HLcAMCiLsCgYEAt3xjUKa4kT6ttqMxC0ck\n9PcB3pC/fzMHTf6Fl1lDc8XT9FwGRbNVsypXCDDv1pLjfE25fkB+8FhVF3ssmqYt\nl/TB03Y++oZWmyMo757wcreRpUkyH6QhXA9T0DZ2wmzMWF5yR77nCdSUs7EtDvHV\ntZgTbPO9QDfk5GGD7SE6eyw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-ptbh4@passport-s0989374.iam.gserviceaccount.com",
+  "client_id": "116426522196732636052",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ptbh4%40passport-s0989374.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
