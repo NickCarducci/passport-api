@@ -93,11 +93,6 @@ fs.writeFile('/firebaseService', process.env.firebaseService, err => {
     });
   }
 });*/
-const serviceAccount = require('./passport-service.json');
-//const jsonData = JSON.parse(process.env.FIREBASE_SERVICE);
-initializeApp({
-  credential: cert(serviceAccount)
-});
 
 app.use(timeout("10s"));
 //catches ctrl+c event
@@ -211,6 +206,11 @@ issue
         statusCode,
         statusText: "not a secure origin-referer-to-host protocol"
       });
+    const serviceAccount = require('./passport-service.json');
+    //const jsonData = JSON.parse(process.env.FIREBASE_SERVICE);
+    initializeApp({
+      credential: cert(serviceAccount)
+    });
     const db = getFirestore();
     const evenT = db.collection('events').doc(req.body.eventId).get();
 
