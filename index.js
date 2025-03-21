@@ -224,12 +224,13 @@ issue
       })
     }
     const event = evenT.data();
+    console.log(req.body.studentId+" student.")
     if (event.attendees.includes(req.body.studentId)) {
       console.log("already attended.");
       return res.send({
         statusCode,
         statusText,
-        error: "already attended"
+        message: "already attended."
       });
     }
     await db.collection('events').doc(req.body.eventId).update({
