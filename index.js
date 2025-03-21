@@ -216,6 +216,7 @@ issue
 
     if (!evenT.exists) {
       console.log(req.body.eventId+" event doesn't exist.");
+      console.log((await evenT).data());
       return res.send({
         statusCode,
         statusText,
