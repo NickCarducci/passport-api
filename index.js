@@ -211,6 +211,7 @@ issue
         statusCode,
         statusText: "not a secure origin-referer-to-host protocol"
       });
+    console.log("attended.");
     const db = getFirestore();
     const evenT = db.collection('events').doc(req.body.eventId).get();
 
@@ -237,7 +238,6 @@ issue
       fullName: req.body.fullName,
       username: req.body.username,
     });
-    console.log("attended.")
     res.send({
       statusCode,
       statusText,
